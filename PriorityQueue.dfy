@@ -47,7 +47,7 @@ class {:autocontracts} PriorityQueue {
   }
  
   // Checks if the heap is empty
-  predicate method isEmpty() 
+  predicate isEmpty() 
     ensures isEmpty() <==> elems() == multiset{}
   {
     // to help proving the post-condition

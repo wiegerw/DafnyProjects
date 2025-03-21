@@ -28,7 +28,7 @@ predicate existsSimplePath<T>(G: Graph<T>, u: T, v: T)
 
 
 // Removes a vertex v and its incident edges from a graph G.
-function method removeVertex<T>(v: T, G: Graph<T>) : Graph<T> {
+function removeVertex<T>(v: T, G: Graph<T>) : Graph<T> {
     Graph(G.V - {v}, set e | e in G.E && e.0 != v && e.1 != v)
 }  
 
@@ -42,7 +42,7 @@ predicate isTopSorting<T>(s: seq<T>, G: Graph<T>)
 }
 
 // Checks if a vertex v in a graph G has incoming edges.
-predicate method hasIncomingEdges<T>(G: Graph<T>, v: T) 
+predicate hasIncomingEdges<T>(G: Graph<T>, v: T) 
  requires v in G.V
 {
   exists u :: u in G.V && (u, v) in G.E
@@ -124,7 +124,7 @@ lemma genPath<T> (G: Graph<T>, n: nat) returns (p: seq<T>)
 
 // Checks if a sequence p of vertices defines a valid  path
 // (allowing repeated vertices and edges) in a graph G.
-predicate method validPath<T>(p: seq<T>, G: Graph<T>) {
+predicate validPath<T>(p: seq<T>, G: Graph<T>) {
    forall i :: 0 <= i < |p| ==> p[i] in G.V
          && (i < |p| - 1 ==> (p[i], p[i+1]) in G.E)
 }
@@ -172,7 +172,7 @@ function elems<T>(s: seq<T>): set<T> {
   set x | x in s 
 }
 
-predicate nodups<T>(s: seq<T>) {
+predicate nodups<T(==)>(s: seq<T>) {
   forall i, j :: 0 <= i < j < |s| ==> s[i] != s[j]
 }
 

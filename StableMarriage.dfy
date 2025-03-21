@@ -23,7 +23,7 @@ predicate isInjective<K,V>(m: map<K,V>) {
 }
 
 // Checks if element 'e1' precedes element 'e2' in sequence 's'. 
-predicate method precedes<T(==)>(e1: T, e2: T, s: seq<T>) {
+predicate precedes<T(==)>(e1: T, e2: T, s: seq<T>) {
     exists i, j :: 0 <= i < j < |s| && s[i] == e1 && s[j] == e2
 }
 
@@ -174,7 +174,7 @@ type Teacher = nat
 type Vacancy = nat
 
 // Auxiliary function to move an element 'x' in a sequence 's' (without duplicates) to the head of the sequence.
-function method moveToHead<T(==)>(s: useq<T>, x: T) : useq<T>
+function moveToHead<T(==)>(s: useq<T>, x: T) : useq<T>
   requires x in s 
   ensures forall y :: y in s ==> y in moveToHead(s, x)
 {
@@ -187,7 +187,7 @@ requires |s| > 0
 { s[|s|-1] }
 
 // Gets the n-th element in a sequence
-function method nth<T>(s: seq<T>, n: nat): T
+function nth<T>(s: seq<T>, n: nat): T
 requires 0 <= n < |s|
 { s[n] }
 
@@ -195,7 +195,7 @@ requires 0 <= n < |s|
 // if any, knwowing the ranked list of teachers, their initial placement, and the final placement. 
 // A teacher that initially occupied 'v' has priority over all others; otherwise, priority is given
 // to teachers with higher rank. 
-predicate method teacherHasPrecedenceForVacancy(t: Teacher, v: Vacancy, finalPlacement: inmap<Teacher, Vacancy>, teachers: useq<Teacher>, initialPlacement: inmap<Teacher,Vacancy>)
+predicate teacherHasPrecedenceForVacancy(t: Teacher, v: Vacancy, finalPlacement: inmap<Teacher, Vacancy>, teachers: useq<Teacher>, initialPlacement: inmap<Teacher,Vacancy>)
 {
     if  t2 :| t2 in finalPlacement && finalPlacement[t2] == v 
     then t != t2 && ((t, v) in initialPlacement.Items || 
@@ -245,7 +245,7 @@ method teachersPlacement(vacancies: set<Vacancy>, teachers: useq<Teacher>, prefe
 
 // preferences of each vacancy given by the ranked list of teachers with the 
 // teacher initially placed there (if any) moved to the head   
-function method vacanciesPrefs(vacancies: set<Vacancy>, teachers: useq<Teacher>, initialPlacement: inmap <Teacher, Vacancy>): map<Teacher, seq<Vacancy>>  
+function vacanciesPrefs(vacancies: set<Vacancy>, teachers: useq<Teacher>, initialPlacement: inmap <Teacher, Vacancy>): map<Teacher, seq<Vacancy>>  
   requires forall t :: t in initialPlacement ==> t in teachers && initialPlacement[t] in vacancies
 {
     map v | v in vacancies ::

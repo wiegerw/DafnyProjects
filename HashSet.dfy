@@ -109,7 +109,7 @@ class {:autocontracts} HashSet<T(==)> {
   // that all positions are occupied with a value or are marked as deleted (i.e., 
   // there are no positions with Nil).
   // In that case, inserting a new value might not be possible. 
-  predicate method full()
+  predicate full()
     ensures full() <==> nilSet(hashTable, hashTable.Length) == {} 
   {
     // to help proving the post-condition (equivalence):  

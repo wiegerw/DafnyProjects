@@ -26,7 +26,7 @@ function rmvVertex(v: Vertex, G: Graph): Graph {
 }
  
 // Removes an edge (u, v) from a graph G (if existent).
-function method rmvEdge(u: Vertex, v: Vertex, G: Graph): Graph 
+function rmvEdge(u: Vertex, v: Vertex, G: Graph): Graph 
   ensures var G' : Graph := rmvEdge(u, v, G);
           u in G && v in G && v in G[u] ==>
             hasEvenCard(G'[v]) != hasEvenCard(G[v]) 

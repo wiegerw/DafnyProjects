@@ -52,7 +52,7 @@ class {:autocontracts} BSTNode {
 
     // Checks if the subtree starting in this node contains a value 'x'
     // Runs in time O(log h), where 'h' is the height of the subtree.
-    predicate method contains(x: T) 
+    predicate contains(x: T) 
       ensures contains(x) <==> x in elems
     {
         if x == value then true
@@ -92,7 +92,7 @@ class {:autocontracts} BSTNode {
 
     // Public function to find the maximum value in this subtree.
     // Runs in time O(log h), where 'h' is the height of the subtree.
-    function method max() : T
+    function max() : T
       ensures max() in elems && forall x :: x in elems ==> x <= max()
     {
         if right == null then value else right.max()
@@ -100,7 +100,7 @@ class {:autocontracts} BSTNode {
 
     // Public function to find the minimum value in this subtree.
     // Runs in time O(log h), where 'h' is the height of the subtree.
-    function method min() : T
+    function min() : T
       ensures min() in elems && forall x :: x in elems ==> x >= min()
     {
         if left  == null then value else left.min()
